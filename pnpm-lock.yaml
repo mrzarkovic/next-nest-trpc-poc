@@ -101,6 +101,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@trpc/client':
+        specifier: ^10.38.0
+        version: 10.38.0(@trpc/server@10.38.0)
       '@types/node':
         specifier: ^20.3.1
         version: 20.3.1
@@ -1186,6 +1189,14 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@trpc/client@10.38.0(@trpc/server@10.38.0):
+    resolution: {integrity: sha512-+uFQeyzVBoWDYt0Oyj+hLUJeBJjMyj/yxfm9s23EU+Y50YZVRSnB9dmAfI6jAAcehJubNLu2NH+jyEJrOen+aA==}
+    peerDependencies:
+      '@trpc/server': 10.38.0
+    dependencies:
+      '@trpc/server': 10.38.0
     dev: false
 
   /@trpc/server@10.38.0:

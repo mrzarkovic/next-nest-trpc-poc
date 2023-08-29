@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+    web:
+        image: web-dev
+        restart: always
+        volumes:
+            - ./apps/web:/app/apps/web
+            - /app/node_modules
+            - /app/apps/web/node_modules
+        ports:
+            - 3000:3000
+
+    server:
+        image: server-dev
+        restart: always
+        volumes:
+            - ./apps/server:/app/apps/server
+            - /app/node_modules
+            - /app/apps/server/node_modules
+        ports:
+            - 4000:3000

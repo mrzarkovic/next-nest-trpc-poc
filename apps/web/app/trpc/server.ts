@@ -4,7 +4,7 @@ import { type AppRouter } from "@server/trpc/trpc.router";
 export const trpc = createTRPCProxyClient<AppRouter>({
     links: [
         httpBatchLink({
-            url: "http://server:3000/api/trpc",
+            url: `${process.env.NEXT_PRIVATE_NESTJS_ADDRESS}/api/trpc`,
             // You can pass any HTTP headers you wish here
             async headers() {
                 return {

@@ -2,3 +2,6 @@ node_modules
 dist
 build
 .env
+init.sql
+.env
+db.env

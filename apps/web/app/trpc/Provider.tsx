@@ -20,7 +20,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: `${process.env.NEXT_PUBLIC_NESTJS_SERVER}/api/trpc`,
+                    url: `${process.env.NEXT_PUBLIC_NESTJS_ADDRESS}/api/trpc`,
                 }),
             ],
         })

@@ -1,4 +1,4 @@
-FROM node:20-slim AS base
+FROM node:18.17.1-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -14,7 +14,7 @@ RUN pnpm install --frozen-lockfile --force
 # RUN pnpm dlx prisma generate
 RUN pnpm run -r build
 
-FROM node:20-slim AS web
+FROM node:18.17.1-slim AS web
 WORKDIR /app
 
 COPY --from=build /app/apps/web/.next/standalone /app/

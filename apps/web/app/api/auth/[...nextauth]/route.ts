@@ -7,7 +7,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const handler = NextAuth({
+export const authOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         LinkedInProvider({
@@ -62,6 +62,8 @@ const handler = NextAuth({
     //         return session;
     //     },
     // },
-});
+};
+
+export const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

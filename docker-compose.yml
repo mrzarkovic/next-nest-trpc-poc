@@ -18,35 +18,5 @@ services:
         ports:
             - 7000:8080
 
-    web:
-        image: web-dev
-        build:
-            context: .
-            dockerfile: Dockerfile.web.dev
-        restart: always
-        volumes:
-            - ./apps/web/app:/app/apps/web/app
-            - ./apps/web/.env.local:/app/apps/web/.env.local
-            - /app/node_modules
-            - /app/apps/web/node_modules
-            - /app/apps/web/.next
-        ports:
-            - 3000:3000
-
-    server:
-        image: server-dev
-        build:
-            context: .
-            dockerfile: Dockerfile.server.dev
-        restart: always
-        volumes:
-            - ./apps/server/src:/app/apps/server/src
-            - ./apps/server/.env:/app/apps/server/.env
-            - /app/node_modules
-            - /app/apps/server/node_modules
-            - /app/apps/server/dist
-        ports:
-            - 4000:3000
-
 volumes:
     next-nest-trpc-db:

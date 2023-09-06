@@ -4,29 +4,38 @@ Dockerized Next.js front-end and NestJS back-end with tRPC API for both client-s
 
 ### Dev
 
-Build server docker image
+1. Install dependencies.
+   Use node version from .nvmrc file
+
+```bash
+pnpm install
+```
+
+2. Build the server docker image
 
 ```bash
 docker build -t server-dev:latest . -f Dockerfile.server.dev
 ```
 
-Build web docker image
+3. Build the web docker image
 
 ```bash
 docker build -t web-dev:latest . -f Dockerfile.web.dev
 ```
 
+4. Start the containers
+
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
-4. Run DB migrations
+5. Run DB migrations
 
 ```bash
 pnpm dlx prisma migrate dev
 ```
 
-5. Generate Prisma Client
+6. Generate Prisma Client
 
 ```bash
 pnpm dlx prisma generate

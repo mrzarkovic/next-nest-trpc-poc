@@ -9,7 +9,6 @@ const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
-    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         LinkedInProvider({
             clientId: process.env.LINKEDIN_CLIENT_ID ?? "",

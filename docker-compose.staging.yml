@@ -1,0 +1,32 @@
+version: "3.1"
+
+services:
+    web:
+        image: web-staging
+        restart: always
+        ports:
+            - 3000:3000
+
+    server:
+        image: server-staging
+        restart: always
+
+    db:
+        image: mysql:8.0
+        restart: always
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+            - next-nest-trpc-db:/var/lib/mysql
+        ports:
+            - 3307:3306
+        env_file:
+            - ./db.env
+
+    adminer:
+        image: adminer:4
+        restart: always
+        ports:
+            - 7000:8080
+
+volumes:
+    next-nest-trpc-db:

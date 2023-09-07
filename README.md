@@ -1,8 +1,10 @@
-# Next.js NestJS tRPC Dockerized
+# Dockerized Turbo Monorepo: Next.js + NestJS with tRPC!
 
-Dockerized Next.js front-end and NestJS back-end with tRPC API for both client-side and server-side React components.
+Dockerized Next.js with App Router front-end and NestJS back-end with tRPC API.
 
-### Dev
+### Local Development
+
+#### Installation
 
 1. Install dependencies.
    Use node version from .nvmrc file
@@ -11,32 +13,58 @@ Dockerized Next.js front-end and NestJS back-end with tRPC API for both client-s
 pnpm install
 ```
 
-2. Build the server docker image
+2. Generate Prisma Client
 
 ```bash
-docker build -t server-dev:latest . -f Dockerfile.server.dev
+pnpm dlx prisma generate
 ```
 
-3. Build the web docker image
-
-```bash
-docker build -t web-dev:latest . -f Dockerfile.web.dev
-```
-
-4. Start the containers
-
-```bash
-docker-compose up -d --build
-```
-
-5. Run DB migrations
+3. Run DB migrations
 
 ```bash
 pnpm dlx prisma migrate dev
 ```
 
-6. Generate Prisma Client
+#### Development Docker containers
+
+1. Start the containers
 
 ```bash
-pnpm dlx prisma generate
+docker-compose -f docker-compose.yml up -d
+```
+
+2. Stop the containers
+
+```bash
+docker-compose -f docker-compose.yml down
+```
+
+### Staging
+
+#### Build Docker images
+
+1. Build the server docker image
+
+```bash
+docker build --no-cache -t server-staging:latest . -f Dockerfile.server
+```
+
+2. Build the web docker image
+
+```bash
+docker build --no-cache -t web-staging:latest . -f Dockerfile.web
+```
+
+#### Staging Docker containers
+
+1. Start the containers
+
+```bash
+docker-compose -f docker-compose.staging.yml up -d
+```
+
+s 2. Stop the containers
+
+```bash
+docker-compose -f docker-compose.staging.yml down
 ```

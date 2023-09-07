@@ -25,7 +25,7 @@ pnpm dlx prisma generate
 pnpm dlx prisma migrate dev
 ```
 
-#### Development Docker containers
+#### Run Development Docker containers
 
 1. Start the containers
 
@@ -37,6 +37,12 @@ docker-compose -f docker-compose.yml up -d
 
 ```bash
 docker-compose -f docker-compose.yml down
+```
+
+#### Run Next + Nest dev servers
+
+```bash
+pnpm dev
 ```
 
 ### Staging

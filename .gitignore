@@ -6,3 +6,5 @@ init.sql
 .env
 db.env
 .turbo
+*.env*
+!*.env*example

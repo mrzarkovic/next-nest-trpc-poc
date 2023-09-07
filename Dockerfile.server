@@ -22,6 +22,7 @@ FROM base AS build
 WORKDIR /app
 
 COPY --from=dependencies /app/out/json/ /app/
+RUN rm -rf /app/apps/web
 COPY --from=dependencies /app/tsconfig.json /app/tsconfig.json
 RUN pnpm install --frozen-lockfile --force
 

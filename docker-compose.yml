@@ -10,7 +10,7 @@ services:
         ports:
             - 3307:3306
         env_file:
-            - ./db.env
+            - ./docker-env/db.env
 
     adminer:
         image: adminer:4

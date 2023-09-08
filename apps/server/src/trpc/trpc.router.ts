@@ -11,10 +11,10 @@ export class TrpcRouter {
     getTodos: this.trpcService.procedure.query(async () => {
       return [10, 2, 3, 4, 50, 60];
     }),
-    hello: this.trpcService.procedure
+    hello: this.trpcService.protectedProcedure
       .input(z.object({ name: z.string().optional() }))
-      .query(async ({ input }) => {
-        return `Hello ${input.name ? input.name : 'World'}!`;
+      .query(async ({ input, ctx }) => {
+        return `Hello ${input.name ? ctx.user : 'World'}!`;
       }),
   });
 
@@ -23,6 +23,7 @@ export class TrpcRouter {
       '/api/trpc',
       trpcExpress.createExpressMiddleware({
         router: this.appRouter,
+        createContext: this.trpcService.createContext,
       }),
     );
   }

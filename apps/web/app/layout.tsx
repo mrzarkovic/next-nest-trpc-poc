@@ -23,8 +23,12 @@ export default async function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <Providers session={session}>
-                    <MainNav />
-                    {children}
+                    <div className="flex min-h-screen flex-col">
+                        <header>
+                            <MainNav />
+                        </header>
+                        <main>{children}</main>
+                    </div>
                 </Providers>
             </body>
         </html>

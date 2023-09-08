@@ -6,13 +6,15 @@ import { getServerSession } from "next-auth";
 export default async function Home() {
     const session = await getServerSession(authOptions);
     const response = await trpc.hello.query({
-        name: session?.user?.name ?? "World",
+        name: session?.user?.name ?? "Server",
     });
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {response}
-            <ClientSide initial={response} />
-        </main>
+        <div className="container mx-auto p-4">
+            <div>Server: {response}</div>
+            <div>
+                <ClientSide initial={response} />
+            </div>
+        </div>
     );
 }

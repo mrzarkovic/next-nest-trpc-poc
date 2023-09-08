@@ -27,6 +27,11 @@ COPY --from=dependencies /app/tsconfig.json /app/tsconfig.json
 RUN pnpm install --frozen-lockfile --force
 
 COPY --from=dependencies /app/out/full/ .
+
+WORKDIR /app/apps/server
+RUN pnpm dlx prisma db pull
+
+WORKDIR /app
 RUN pnpm turbo run build --filter=server
 
 EXPOSE 3000

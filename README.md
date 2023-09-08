@@ -25,6 +25,12 @@ pnpm dlx prisma generate
 pnpm dlx prisma migrate dev
 ```
 
+4. Initialize Prisma in Server
+
+```bash
+cd apps/server && pnpm dlx prisma db pull
+```
+
 #### Run Development Docker containers
 
 1. Start the containers

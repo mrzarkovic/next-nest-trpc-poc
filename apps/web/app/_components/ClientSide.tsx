@@ -11,9 +11,9 @@ export default function ClientSide({
     const { data: session } = useSession();
 
     const greeting = trpc.hello.useQuery(
-        { name: "Client" },
+        { name: session?.user?.name ?? "Client" },
         { initialData: initial }
     ).data;
 
-    return <div className="text-4xl font-bold">{greeting}</div>;
+    return <div className="text-4xl font-bold">Client: {greeting}</div>;
 }

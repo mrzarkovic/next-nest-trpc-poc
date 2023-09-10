@@ -21,7 +21,12 @@ export default async function RootLayout({
 
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body
+                className={[
+                    inter.className,
+                    "selection:bg-primary-aquamarine",
+                ].join(" ")}
+            >
                 <Providers session={session}>
                     <div className="flex min-h-screen flex-col">
                         <header>

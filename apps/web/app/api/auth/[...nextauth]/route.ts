@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, account }) {
             if (account) {
                 token.auth_token = await signJwt({
-                    sub: token.sub,
+                    user_id: token.sub,
                     id_token: account.id_token,
                     access_token: account.access_token,
                     expires_at: account.expires_at,

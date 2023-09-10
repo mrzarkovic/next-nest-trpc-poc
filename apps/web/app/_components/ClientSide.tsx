@@ -6,14 +6,11 @@ import { useSession } from "next-auth/react";
 export default function ClientSide({
     initial,
 }: {
-    initial: Awaited<ReturnType<typeof serverClient.hello.query>>;
+    initial?: Awaited<ReturnType<typeof serverClient.hello.query>>;
 }) {
     const { data: session } = useSession();
 
-    const greeting = trpc.hello.useQuery(
-        { name: session?.user?.name ?? "Client" },
-        { initialData: initial }
-    ).data;
+    const greeting = trpc.getTodos.useQuery().data;
 
     return <div className="text-4xl font-bold">Client: {greeting}</div>;
 }

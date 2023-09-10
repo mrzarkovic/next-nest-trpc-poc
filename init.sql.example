@@ -1,0 +1,4 @@
+CREATE DATABASE nextrpc_db CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
+CREATE USER 'nextrpc_user'@'%' IDENTIFIED BY 'openssl rand -base64 16';
+GRANT ALL PRIVILEGES ON *.* TO 'nextrpc_user'@'%';

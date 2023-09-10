@@ -1,0 +1,39 @@
+FROM node:18.17.1-slim AS base
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable && corepack prepare pnpm@8.6.12 --activate
+
+WORKDIR /app
+
+FROM base as dependencies
+
+RUN apt-get update && apt-get install libssl-dev -y
+RUN pnpm add --global turbo
+
+WORKDIR /app
+
+COPY . /app/
+RUN turbo prune --scope=server --docker
+RUN rm -rf /app/out/full/apps/server/node_modules
+
+FROM base AS build
+
+WORKDIR /app
+
+COPY --from=dependencies /app/out/json/ /app/
+RUN rm -rf /app/apps/web
+COPY --from=dependencies /app/tsconfig.json /app/tsconfig.json
+RUN pnpm install --frozen-lockfile --force
+
+COPY --from=dependencies /app/out/full/ .
+
+WORKDIR /app/apps/server
+RUN pnpm dlx prisma db pull
+
+WORKDIR /app
+RUN pnpm turbo run build --filter=server
+
+EXPOSE 3000
+
+CMD [ "node", "apps/server/dist/main.js" ]

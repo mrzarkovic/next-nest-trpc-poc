@@ -2,5 +2,10 @@ node_modules
 dist
 build
 .env
-db.env
 init.sql
+.env
+db.env
+.turbo
+*.env*
+!*.env*example
+out

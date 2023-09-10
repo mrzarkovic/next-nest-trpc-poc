@@ -1,6 +1,18 @@
 version: "3.1"
 
 services:
+    web:
+        image: web-staging
+        restart: always
+        ports:
+            - 3000:3000
+        env_file:
+            - ./docker-env/web.staging.env
+
+    server:
+        image: server-staging
+        restart: always
+
     db:
         image: mysql:8.0
         restart: always

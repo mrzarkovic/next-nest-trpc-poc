@@ -1,0 +1,11 @@
+node_modules
+apps/web/node_modules
+apps/server/node_modules
+node_modules
+.git
+.gitignore
+*.md
+dist
+apps/web/.next
+apps/server/dist
+apps/*/.turbo

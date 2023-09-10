@@ -3,11 +3,27 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "packageManager": "pnpm@8.6.12",
     "scripts": {
-        "dev": "pnpm run --parallel dev",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "preinstall": "npx only-allow pnpm"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.2",
+        "eslint": "^8.48.0",
+        "prettier": "^3.0.3",
+        "prisma": "^5.2.0",
+        "tsconfig": "^7.0.0",
+        "turbo": "^1.10.13"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.2.0",
+        "jsonwebtoken": "^9.0.2"
+    }
 }

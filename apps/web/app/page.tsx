@@ -1,13 +1,18 @@
-import ClientSide from "./components/ClientSide";
-import { trpc } from "./trpc/server";
+import { getServerSession } from "next-auth";
+import ClientSide from "./_components/ClientSide";
+import { trpc } from "./_trpc/server";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default async function Home() {
-    const response = await trpc.hello.query({ name: "Server" });
+    const session = await getServerSession(authOptions);
+    const response = await trpc.getTodos.query();
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {response}
-            <ClientSide initial={response} />
-        </main>
+        <div className="container mx-auto p-4">
+            <div>Todos: {JSON.stringify(response)}</div>
+            <div>
+                <ClientSide />
+            </div>
+        </div>
     );
 }
